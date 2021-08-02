@@ -1,0 +1,29 @@
+#!/bin/bash
+
+migration_path="./src/main/resources/db/migration"
+arg0=$1
+arg1=$2
+arg2=$3
+
+if [ -z $arg0 ]
+then
+	echo "Migration file creator"
+	echo "using:"
+	echo "create migration migration-name"
+	echo ""
+	echo "will touch file withing db migration folder"
+	echo "with name YYYYMMDDHHmmss-migration-name.sql"
+
+fi
+if (( $arg0 == "migration" ))
+then
+	if [ -z $arg1 ]
+	then
+		echo "you should specify migration name"
+	else
+		filename="$(date '+%Y-%m-%d-%H%M%S')-$arg1.sql"
+		echo "V1__$filename generated at $migration_path"
+		touch "$migration_path/$filename"
+	fi
+
+fi
