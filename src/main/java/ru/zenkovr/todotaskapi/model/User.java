@@ -49,7 +49,7 @@ public class User {
     }
 
     public Boolean isEmailConfirmed(){
-        return !emailConfirmedAt.equals(null);
+        return emailConfirmedAt != null;
     }
 
     public void confirmEmail(String token){
